@@ -1,2 +1,50 @@
-<h1>Pages#nosotros</h1>
-<p>Find me in app/views/pages/nosotros.html.erb</p>
+<section class="py-5 dark-section text-white text-center">
+  <div class="container py-5">
+    <h1 class="fw-black mb-3">Nuestra Institución</h1>
+    <p class="text-white-50 mx-auto" style="max-width: 600px;">
+      Conoce el respaldo académico detrás de cada una de nuestras certificaciones.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="section-eyebrow">QUIÉNES SOMOS</p>
+        <h2 class="section-title mt-2 mb-3">
+          Formamos los profesionistas que el mercado necesita.
+        </h2>
+        <p class="text-secondary lh-lg mb-3">
+          La Facultad de Contaduría Pública y Administración (FACPYA) de la UANL lidera 
+          desde hace décadas la formación de profesionistas en el noreste del país.
+        </p>
+        <p class="text-secondary lh-lg">
+          Cada programa es diseñado junto con empresas locales para garantizar que lo que 
+          aprendes es exactamente lo que las organizaciones buscan hoy.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <% [
+            { icon: "bi-mortarboard-fill",  title: "Respaldo académico",  desc: "Certificaciones avaladas por FACPYA-UANL.", color: "#2563EB" },
+            { icon: "bi-people-fill",       title: "Instructores expertos", desc: "Profesionales activos en la industria.", color: "#16A34A" },
+            { icon: "bi-shield-fill-check", title: "Valor curricular",    desc: "Créditos en licenciatura y posgrado.", color: "#7C3AED" },
+            { icon: "bi-lightning-fill",    title: "Aplicación inmediata", desc: "Contenido práctico desde el día uno.", color: "#F5A623" }
+          ].each do |f| %>
+            <div class="col-6">
+              <div class="p-4 rounded-3 border bg-light h-100 shadow-sm transition-all cert-card">
+                <div class="rounded-2 d-flex align-items-center justify-content-center mb-3"
+                     style="width:45px;height:45px;background:<%= f[:color] %>22;">
+                  <i class="<%= f[:icon] %>" style="color:<%= f[:color] %>;font-size:20px;"></i>
+                </div>
+                <h6 class="fw-bold text-navy mb-2"><%= f[:title] %></h6>
+                <p class="text-secondary small mb-0"><%= f[:desc] %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,2 +1,36 @@
-<h1>Pages#faq</h1>
-<p>Find me in app/views/pages/faq.html.erb</p>
+<section class="py-5 dark-section text-white text-center">
+  <div class="container py-5">
+    <h1 class="fw-black mb-3">Preguntas Frecuentes</h1>
+    <p class="text-white-50 mx-auto" style="max-width: 600px;">
+      Resolvemos tus dudas principales sobre el proceso de inscripción y modalidades.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light min-vh-100">
+  <div class="container py-4">
+    <div class="accordion mx-auto shadow-sm" id="faqAccordion" style="max-width:800px;">
+      <% [
+        { q: "¿Quién puede inscribirse?", a: "Las certificaciones están abiertas a estudiantes activos de FACPYA, egresados y profesionistas externos." },
+        { q: "¿Cómo obtengo mi certificado?", a: "Al completar el programa y aprobar la evaluación final recibirás un certificado digital y físico con el sello oficial de FACPYA-UANL." },
+        { q: "¿Tienen valor curricular?", a: "Sí, todas las certificaciones cuentan con valor curricular dentro de los programas de licenciatura y posgrado." },
+        { q: "¿Cuáles son las opciones de pago?", a: "Puedes pagar en una sola exhibición con 5% de descuento o en parcialidades. También contamos con convenios bancarios." },
+        { q: "¿Hay requisitos previos?", a: "Cada certificación tiene sus propios requisitos en su descripción. En general se requiere conocimiento básico del área." }
+      ].each_with_index do |faq, i| %>
+        <div class="accordion-item border-0 border-bottom mb-2 rounded-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold text-navy py-4 <%= 'collapsed' if i > 0 %>"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#faq<%= i %>">
+              <%= faq[:q] %>
+            </button>
+          </h2>
+          <div id="faq<%= i %>" class="accordion-collapse collapse <%= 'show' if i == 0 %>" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-secondary lh-lg pt-0 pb-4">
+              <%= faq[:a] %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
