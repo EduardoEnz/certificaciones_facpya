@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  slug: MyString
+  description: MyText
+  duration: MyString
+  modality: MyString
+  price: 9.99
+  start_date: 2026-06-20
+  status: false
+  category: MyString
+  syllabus: MyText
+  seats_available: 1
+
+two:
+  title: MyString
+  slug: MyString
+  description: MyText
+  duration: MyString
+  modality: MyString
+  price: 9.99
+  start_date: 2026-06-20
+  status: false
+  category: MyString
+  syllabus: MyText
+  seats_available: 1

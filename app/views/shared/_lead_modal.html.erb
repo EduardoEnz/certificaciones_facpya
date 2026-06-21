@@ -1,0 +1,48 @@
+<div class="modal fade" id="leadModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 shadow-lg">
+      <div class="modal-header border-0 pb-0">
+        <div>
+          <h5 class="modal-title fw-black text-navy mb-1">Solicitar Información</h5>
+          <p class="text-secondary small mb-0">
+            Completa el formulario y te contactamos pronto.
+          </p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @modal_lead, url: leads_path, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :name, "Nombre completo *", class: "form-label fw-semibold small" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Tu nombre completo" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :email, "Correo electrónico *", class: "form-label fw-semibold small" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "correo@ejemplo.com" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :phone, "Teléfono", class: "form-label fw-semibold small" %>
+            <%= f.telephone_field :phone, class: "form-control", placeholder: "(81) 0000-0000" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :career, "Carrera / Empresa", class: "form-label fw-semibold small" %>
+            <%= f.text_field :career, class: "form-control", placeholder: "Lic. Contaduría Pública" %>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold small">Certificación de interés</label>
+            <select name="certification_id" class="form-select">
+              <option value="">Seleccionar...</option>
+              <% Certification.active.each do |cert| %>
+                <option value="<%= cert.id %>"><%= cert.title %></option>
+              <% end %>
+            </select>
+          </div>
+          <%= f.submit "Enviar solicitud", class: "btn btn-gold w-100 py-2 fw-bold" %>
+          <p class="text-muted text-center mt-2 small">
+            Tus datos están protegidos conforme al Aviso de Privacidad de FACPYA-UANL.
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

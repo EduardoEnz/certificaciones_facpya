@@ -1,0 +1,34 @@
+<section class="py-5 bg-navy dark-section text-white text-center">
+  <div class="container py-5">
+    <h1 class="fw-black mb-3">Catálogo de Certificaciones</h1>
+    <p class="text-white-50 mx-auto" style="max-width: 600px;">
+      Impulsa tu carrera con nuestros programas especializados diseñados para las demandas actuales del mercado.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light min-vh-100">
+  <div class="container">
+    <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+      <%= link_to "Todas", certifications_path, class: "filter-btn #{'active' if params[:category].blank?}" %>
+      <% @categories.each do |category| %>
+        <%= link_to category, certifications_path(category: category), class: "filter-btn #{'active' if params[:category] == category}" %>
+      <% end %>
+    </div>
+
+    <div class="row g-4">
+      <% if @certifications.any? %>
+        <% @certifications.each do |cert| %>
+          <div class="col-md-6 col-lg-4">
+            <%= render "shared/cert_card", cert: cert %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col-12 text-center py-5">
+          <p class="text-muted">No hay certificaciones disponibles en esta categoría.</p>
+          <%= link_to "Ver todas", certifications_path, class: "btn btn-outline-primary mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

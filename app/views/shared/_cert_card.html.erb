@@ -1,0 +1,61 @@
+<%
+  gradients = {
+    "Tecnología" => { bg: "linear-gradient(135deg,#1D4ED8,#3B82F6)", color: "#2563EB" },
+    "Gestión"    => { bg: "linear-gradient(135deg,#6D28D9,#A78BFA)", color: "#7C3AED" },
+    "Marketing"  => { bg: "linear-gradient(135deg,#B91C1C,#F87171)", color: "#DC2626" }
+  }
+  icons = {
+    "Power BI"         => "bi-bar-chart-fill",
+    "Excel Avanzado"   => "bi-file-earmark-spreadsheet-fill",
+    "Scrum Master"     => "bi-arrow-repeat",
+    "Marketing Digital"=> "bi-megaphone-fill"
+  }
+  style = gradients[cert.category] || { bg: "linear-gradient(135deg,#374151,#6B7280)", color: "#374151" }
+  icon  = icons[cert.title] || "bi-award-fill"
+%>
+
+<div class="cert-card">
+  <div class="cert-card-header" style="background:<%= style[:bg] %>;">
+    <div class="cert-card-icon">
+      <i class="<%= icon %>" style="font-size:28px;color:white;"></i>
+    </div>
+    <span class="cert-category-badge" style="color:<%= style[:color] %>;">
+      <%= cert.category&.upcase %>
+    </span>
+    <span class="cert-date-badge">
+      📅 <%= cert.start_date&.strftime("%-d %b, %Y") %>
+    </span>
+  </div>
+
+  <div class="p-4 d-flex flex-column flex-grow-1">
+    <h5 class="fw-black text-navy mb-2"><%= cert.title %></h5>
+    <p class="text-secondary small lh-sm mb-3 flex-grow-1">
+      <%= truncate(cert.description, length: 90) %>
+    </p>
+
+    <div class="d-flex gap-3 mb-3">
+      <span class="text-secondary small">
+        <i class="bi bi-clock me-1"></i><%= cert.duration %>
+      </span>
+      <span class="text-secondary small">
+        <i class="bi bi-laptop me-1"></i><%= cert.modality %>
+      </span>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-auto">
+      <div>
+        <div class="text-muted" style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;">
+          Inversión
+        </div>
+        <div class="cert-price">
+          $<%= number_with_delimiter(cert.price.to_i) %> MXN
+        </div>
+      </div>
+      <%= link_to certification_path(cert),
+          class: "btn btn-sm fw-bold px-3",
+          style: "background:var(--navy);color:var(--gold);" do %>
+        Ver más <i class="bi bi-arrow-right ms-1"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

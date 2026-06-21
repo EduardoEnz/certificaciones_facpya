@@ -1,0 +1,218 @@
+<%# ===== HERO ===== %>
+<section class="hero-section">
+  <div class="container py-5 position-relative" style="z-index:1;">
+    <div class="hero-badge mb-3">
+      <span class="dot"></span>
+      <span>UANL · FACPYA · Certificaciones 2025</span>
+    </div>
+    <h1 class="hero-title mt-3 mb-3">
+      Certifica tu talento,<br>
+      <span>impulsa tu carrera.</span>
+    </h1>
+    <p class="hero-subtitle mb-4">
+      Programas de certificación respaldados por FACPYA-UANL.
+      Desarrolla las competencias que las empresas de Monterrey buscan hoy.
+    </p>
+    <div class="d-flex gap-3 flex-wrap">
+      <%= link_to "Ver Certificaciones", certifications_path, class: "btn btn-gold btn-lg px-4" %>
+      <button class="btn btn-outline-light btn-lg px-4"
+              data-bs-toggle="modal" data-bs-target="#leadModal">
+        Solicitar Información
+      </button>
+    </div>
+  </div>
+
+  <div class="stats-strip mt-auto">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-center">
+        <% [["4","Certificaciones"],["500+","Egresados"],["95%","Satisfacción"],["100%","Valor curricular"]].each do |v,l| %>
+          <div class="stat-item">
+            <div class="stat-value"><%= v %></div>
+            <div class="stat-label"><%= l %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ===== CERTIFICACIONES ===== %>
+<section class="py-5 bg-light" id="certificaciones">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <p class="section-eyebrow">PROGRAMAS DISPONIBLES</p>
+      <h2 class="section-title mt-2">Certificaciones Especializadas</h2>
+      <p class="text-secondary mt-2">Elige el programa que impulse tu siguiente paso profesional.</p>
+    </div>
+
+    <div class="row g-4">
+      <% if @certifications.any? %>
+        <% @certifications.each do |cert| %>
+          <div class="col-md-6 col-lg-3">
+            <%= render "shared/cert_card", cert: cert %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col-12 text-center py-5">
+          <p class="text-secondary">Próximamente nuevas certificaciones.</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-center mt-5">
+      <%= link_to "Ver todas las certificaciones", certifications_path,
+          class: "btn btn-outline-dark px-4" %>
+    </div>
+  </div>
+</section>
+
+<%# ===== NOSOTROS ===== %>
+<section class="py-5 bg-white" id="nosotros">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="section-eyebrow">QUIÉNES SOMOS</p>
+        <h2 class="section-title mt-2 mb-3">
+          Formamos los profesionistas que el mercado necesita.
+        </h2>
+        <p class="text-secondary lh-lg mb-3">
+          La Facultad de Contaduría Pública y Administración (FACPYA) de la UANL lidera 
+          desde hace décadas la formación de profesionistas en el noreste del país.
+        </p>
+        <p class="text-secondary lh-lg">
+          Cada programa es diseñado junto con empresas locales para garantizar que lo que 
+          aprendes es exactamente lo que las organizaciones de Monterrey buscan hoy.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <% [
+            { icon: "bi-mortarboard-fill",  title: "Respaldo académico",  desc: "Certificaciones avaladas por FACPYA-UANL.", color: "#2563EB" },
+            { icon: "bi-people-fill",       title: "Instructores expertos", desc: "Profesionales activos en la industria.", color: "#16A34A" },
+            { icon: "bi-shield-fill-check", title: "Valor curricular",    desc: "Créditos en licenciatura y posgrado.", color: "#7C3AED" },
+            { icon: "bi-lightning-fill",    title: "Aplicación inmediata", desc: "Contenido práctico desde el día uno.", color: "#F5A623" }
+          ].each do |f| %>
+            <div class="col-6">
+              <div class="p-3 rounded-3 border bg-light h-100">
+                <div class="rounded-2 d-flex align-items-center justify-content-center mb-2"
+                     style="width:38px;height:38px;background:<%= f[:color] %>22;">
+                  <i class="<%= f[:icon] %>" style="color:<%= f[:color] %>;font-size:18px;"></i>
+                </div>
+                <h6 class="fw-bold text-navy mb-1"><%= f[:title] %></h6>
+                <p class="text-secondary small mb-0"><%= f[:desc] %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ===== TESTIMONIOS ===== %>
+<section class="py-5 dark-section" id="testimonios">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <p class="section-eyebrow">HISTORIAS DE ÉXITO</p>
+      <h2 class="section-title text-white mt-2">Lo que dicen nuestros egresados</h2>
+    </div>
+    <div class="row g-4">
+      <% [
+        { name: "María González",  career: "Lic. Contaduría Pública", cert: "Power BI",         year: "2024",
+          text: "La certificación en Power BI transformó la forma en que presento datos a mis clientes." },
+        { name: "Carlos Hernández", career: "Lic. Administración",     cert: "Scrum Master",    year: "2024",
+          text: "Scrum me dio las herramientas para liderar mi equipo. Ya implementé sprints en mi empresa." },
+        { name: "Ana Rodríguez",   career: "Lic. Mercadotecnia",      cert: "Marketing Digital", year: "2025",
+          text: "Al mes de terminar conseguí un ascenso. Contenido 100% práctico con instructores reales." }
+      ].each do |t| %>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="d-flex gap-1 mb-3">
+              <% 5.times do %><i class="bi bi-star-fill" style="color:#F5A623;font-size:14px;"></i><% end %>
+            </div>
+            <p class="lh-lg mb-3 fst-italic small" style="color:rgba(255,255,255,0.82);">
+              "<%= t[:text] %>"
+            </p>
+            <div class="d-flex align-items-center gap-2">
+              <div class="testimonial-avatar"><%= t[:name].first %></div>
+              <div>
+                <div class="text-white fw-bold small"><%= t[:name] %></div>
+                <div class="small" style="color:rgba(255,255,255,0.45);">
+                  <%= t[:career] %> · <%= t[:cert] %> <%= t[:year] %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ===== FAQ ===== %>
+<section class="py-5 bg-light" id="preguntas">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <p class="section-eyebrow">RESOLVEMOS TUS DUDAS</p>
+      <h2 class="section-title mt-2">Preguntas Frecuentes</h2>
+    </div>
+    <div class="accordion mx-auto" id="faqAccordion" style="max-width:720px;">
+      <% [
+        { q: "¿Quién puede inscribirse?",
+          a: "Las certificaciones están abiertas a estudiantes activos de FACPYA, egresados y profesionistas externos." },
+        { q: "¿Cómo obtengo mi certificado?",
+          a: "Al completar el programa y aprobar la evaluación final recibirás un certificado digital y físico con el sello oficial de FACPYA-UANL." },
+        { q: "¿Tienen valor curricular?",
+          a: "Sí, todas las certificaciones cuentan con valor curricular dentro de los programas de licenciatura y posgrado." },
+        { q: "¿Cuáles son las opciones de pago?",
+          a: "Puedes pagar en una sola exhibición con 5% de descuento o en parcialidades. También contamos con convenios bancarios." },
+        { q: "¿Hay requisitos previos?",
+          a: "Cada certificación tiene sus propios requisitos en su descripción. En general se requiere conocimiento básico del área." }
+      ].each_with_index do |faq, i| %>
+        <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold <%= 'collapsed' if i > 0 %>"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq<%= i %>">
+              <%= faq[:q] %>
+            </button>
+          </h2>
+          <div id="faq<%= i %>"
+               class="accordion-collapse collapse <%= 'show' if i == 0 %>"
+               data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-secondary"><%= faq[:a] %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ===== CTA ===== %>
+<section class="py-5 dark-section" id="contacto">
+  <div class="container py-4 text-center">
+    <p class="section-eyebrow">DA EL PRIMER PASO</p>
+    <h2 class="text-white fw-black mt-2 mb-3" style="font-size:clamp(26px,4vw,42px);">
+      ¿Listo para certificarte?
+    </h2>
+    <p class="mx-auto mb-4" style="color:rgba(255,255,255,0.68);max-width:500px;line-height:1.6;">
+      Registra tu interés y un asesor de FACPYA te contactará en menos de 24 horas.
+    </p>
+    <button class="btn btn-gold btn-lg px-5 py-3 fw-bold"
+            data-bs-toggle="modal" data-bs-target="#leadModal">
+      Registrar mi interés
+    </button>
+    <div class="d-flex justify-content-center gap-4 flex-wrap mt-4">
+      <span style="color:rgba(255,255,255,0.6);font-size:13px;">
+        <i class="bi bi-envelope me-2" style="color:#F5A623;"></i>certificaciones@facpya.uanl.mx
+      </span>
+      <span style="color:rgba(255,255,255,0.6);font-size:13px;">
+        <i class="bi bi-telephone me-2" style="color:#F5A623;"></i>+52 (81) 8329-4000
+      </span>
+      <span style="color:rgba(255,255,255,0.6);font-size:13px;">
+        <i class="bi bi-geo-alt me-2" style="color:#F5A623;"></i>San Nicolás de los Garza, N.L.
+      </span>
+    </div>
+  </div>
+</section>
