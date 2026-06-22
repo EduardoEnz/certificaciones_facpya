@@ -5,7 +5,6 @@ AdminUser.find_or_create_by!(email: "admin@facpya.uanl.mx") do |u|
 end
 puts "✅ Admin creado"
 
-# Crear certificaciones
 [
   {
     title: "Power BI", category: "Tecnología",
