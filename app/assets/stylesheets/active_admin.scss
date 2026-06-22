@@ -42,3 +42,10 @@ $body-background-color: #f8f9fa;
   justify-content: center;
   cursor: pointer;
 }
+
+body.active_admin {
+  .attributes_table th {
+    padding-left: 15px !important;
+    text-align: left !important;
+  }
+}
