@@ -12,7 +12,7 @@ class LeadsController < ApplicationController
         cert = Certification.find(params[:certification_id])
         @lead.enrollments.create!(certification: cert, status: "pending")
       end
-      LeadMailer.new_lead_notification(@lead).deliver_now
+      #LeadMailer.new_lead_notification(@lead).deliver_now
 
       redirect_to root_path, notice: "¡Registro exitoso! Te contactaremos pronto."
     else
