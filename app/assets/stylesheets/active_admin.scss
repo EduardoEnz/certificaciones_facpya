@@ -43,9 +43,34 @@ $body-background-color: #f8f9fa;
   cursor: pointer;
 }
 
+/* -------------------------------------------------------------
+   Forzar diseño de tabla lado a lado en las vistas de detalles
+-------------------------------------------------------------- */
 body.active_admin {
+  .attributes_table table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  
+  .attributes_table tr {
+    display: table-row !important;
+    border-bottom: 1px solid #e8e8e8 !important; /* Línea separadora suave */
+  }
+  
   .attributes_table th {
-    padding-left: 15px !important;
+    display: table-cell !important;
+    width: 25% !important; /* El título ocupará la cuarta parte de la pantalla */
+    padding: 15px !important;
     text-align: left !important;
+    vertical-align: middle !important;
+    background-color: #f8f9fa !important; /* Un fondo gris muy elegante para los títulos */
+    color: #333 !important;
+  }
+  
+  .attributes_table td {
+    display: table-cell !important;
+    padding: 15px !important;
+    vertical-align: middle !important;
   }
 }
