@@ -21,7 +21,14 @@ test:
   database: certificaciones_facpya_test
 
 production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
-  url: <%= ENV.fetch("DATABASE_URL", "") %>
+  primary: &primary_production
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    url: <%= ENV.fetch("DATABASE_URL", "") %>
+  cable:
+    <<: *primary_production
+  cache:
+    <<: *primary_production
+  queue:
+    <<: *primary_production
