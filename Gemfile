@@ -81,6 +81,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "pg", "~> 1.6"
-
 gem "dartsass-rails", "~> 0.5.1"
