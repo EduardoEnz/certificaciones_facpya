@@ -9,6 +9,16 @@ class Certification < ApplicationRecord
 
   before_validation :generate_slug
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[category created_at description duration
+       id modality price seats_available slug
+       start_date status syllabus title updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[enrollments leads]
+  end
+
   def to_param
     slug
   end

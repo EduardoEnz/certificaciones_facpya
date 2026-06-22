@@ -1,5 +1,5 @@
 class Lead < ApplicationRecord
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :certifications, through: :enrollments
 
   validates :name, :email, presence: true
