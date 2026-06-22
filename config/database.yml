@@ -22,4 +22,6 @@ test:
 
 production:
   <<: *default
-  database: certificaciones_facpya_production
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV.fetch("DATABASE_URL", "") %>
