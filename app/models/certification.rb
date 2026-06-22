@@ -12,12 +12,10 @@ class Certification < ApplicationRecord
   def to_param
     slug
   end
-  def self.ransackable_attributes(auth_object = nil)
-    ["category", "created_at", "description", "duration", "id", "modality", "price", "seats_available", "slug", "start_date", "status", "syllabus", "title", "updated_at"]
-  end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["enrollments", "leads"]
+  def syllabus_items
+    return [] if syllabus.blank?
+    syllabus.split("\n").map(&:strip).reject(&:blank?)
   end
 
   private

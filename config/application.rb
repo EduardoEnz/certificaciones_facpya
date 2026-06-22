@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module CertificacionesFacpya
   class Application < Rails::Application
-    config.load_defaults 8.0
     config.i18n.default_locale = :es
+    config.i18n.available_locales = [:es, :en]
   end
 end

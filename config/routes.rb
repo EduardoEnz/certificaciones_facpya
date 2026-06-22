@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get "pages/nosotros"
-  get "pages/testimonios"
-  get "pages/faq"
-  get "leads/new"
-  get "leads/create"
-  get "certifications/index"
-  get "certifications/show"
-  get "home/index"
   root "home#index"
 
   resources :certifications, only: [:index, :show]
