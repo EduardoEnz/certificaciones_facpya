@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_21_034106) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_06_29_155302) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.bigint "author_id"
     t.string "author_type"
@@ -66,6 +63,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_21_034106) do
     t.index ["lead_id"], name: "index_enrollments_on_lead_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.datetime "end_date"
+    t.datetime "start_date"
+    t.string "title"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "leads", force: :cascade do |t|
     t.string "career"
     t.datetime "created_at", null: false
@@ -78,6 +85,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_21_034106) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "registrations", force: :cascade do |t|
+    t.string "career"
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.integer "event_id"
+    t.string "faculty"
+    t.string "is_uanl"
+    t.string "matricula"
+    t.string "name"
+    t.string "phone"
+    t.string "role"
+    t.string "status"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_registrations_on_event_id"
+  end
+
   add_foreign_key "enrollments", "certifications"
   add_foreign_key "enrollments", "leads"
+  add_foreign_key "registrations", "events"
 end

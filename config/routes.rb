@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   resources :certifications, only: [:index, :show]
   resources :leads, only: [:new, :create]
+  resources :events, only: [:index]
+  resources :registrations, only: [:create]
 
   get "nosotros",             to: "pages#nosotros"
   get "testimonios",          to: "pages#testimonios"
   get "preguntas-frecuentes", to: "pages#faq", as: :faq
+  
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
